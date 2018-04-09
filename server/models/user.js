@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   firstName: String,
   lastName: String,
+  picture: String,
   date: { type: Date, default: Date.now }
 });
 
