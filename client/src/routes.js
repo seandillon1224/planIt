@@ -2,6 +2,7 @@ import Base from './components/Base.jsx';
 import HomePage from './components/HomePage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
+import UserForm from './containers/Upload.jsx';
 
 
 const routes = {
@@ -22,6 +23,11 @@ const routes = {
     {
       path: '/signup',
       component: SignUpPage
+    },
+
+    {
+      path: '/upload',
+      component: UserForm
     }
 
   ]

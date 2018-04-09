@@ -10,7 +10,7 @@ import App from './components/start.jsx';
 
 
 // remove tap delay, essential for MaterialUI to work properly
-// injectTapEventPlugin();
+injectTapEventPlugin();
 
 // ReactDom.render((
 //   <MuiThemeProvider muiTheme={getMuiTheme()}>

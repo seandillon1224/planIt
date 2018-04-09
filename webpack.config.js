@@ -2,10 +2,13 @@ const path = require('path');
 
 
 module.exports = {
+
+  //roduction" | "development" | "none"
+  // Chosen mode tells webpack to use its built-in optimizations accordingly.
   // the entry file for the bundle
   entry: path.join(__dirname, '/client/src/app.jsx'),
 
-  // the bundle file we will get in the result
+  // the bundle file we will get in the result  
   output: {
     path: path.join(__dirname, '/client/dist/js'),
     filename: 'app.js',
@@ -14,7 +17,7 @@ module.exports = {
   module: {
 
     // apply loaders to files that meet given conditions
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       include: path.join(__dirname, '/client/src'),
     // use: [
