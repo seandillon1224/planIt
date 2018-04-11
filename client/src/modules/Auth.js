@@ -29,7 +29,7 @@ class Auth {
   }
 
   /**
-   * Get a token value.
+   * Get a token value. 
    *
    * @returns {string}
    */

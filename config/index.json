@@ -1,4 +1,4 @@
 {
-  "dbUri": "mongodb://seandillon1224:Brandnew1224@ds133816.mlab.com:33816/heroku_6mmx8wfw",
-  "jwtSecret": "a secret phrase!!"
-}
+    "dbUri": "mongodb://seandillon1224:Brandnew1224@ds133816.mlab.com:33816/heroku_6mmx8wfw",
+    "jwtSecret": "a secret phrase!!"
+  }
