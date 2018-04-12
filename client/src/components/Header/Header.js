@@ -62,7 +62,8 @@ class Header extends React.Component {
         {Auth.isUserAuthenticated() == false ? (
         <div className="top-bar-right">
                  <Link to="/login">{this.state.loginText}</Link> 
-                <Link to="/signup">{this.state.signupText}</Link>   
+                <Link to="/signup">{this.state.signupText}</Link> 
+                <Link to="/upload">Upload Picture</Link>  
         </div>
         ):
         (

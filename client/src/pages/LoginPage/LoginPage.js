@@ -2,6 +2,7 @@ import React, {Component } from 'react';
 import LoginForm from '../../components/LoginForm';
 import Auth from '../../modules/Auth';
 import {Redirect} from 'react-router-dom';
+import Header from '../../components/Header';
 
 class LoginPage extends Component {
 
@@ -121,6 +122,7 @@ class LoginPage extends Component {
     return (
     
       <div>
+      <Header/>
       {this.state.redirect == false ? (   
       <LoginForm
         onSubmit={this.processForm}

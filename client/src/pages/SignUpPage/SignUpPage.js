@@ -1,6 +1,8 @@
 import React, {Component } from 'react';
 import SignUpForm from '../../components/SignUpForm';
 import {Redirect} from 'react-router-dom';
+import Header from '../../components/Header';
+import UploadPage from '../Upload';
 
 class SignUpPage extends Component {
 
@@ -98,6 +100,7 @@ class SignUpPage extends Component {
       //   signup
       // </div>
       <div>
+        <Header/>
       {this.state.redirect == false ?(
       <SignUpForm
         onSubmit={this.processForm}
@@ -105,6 +108,7 @@ class SignUpPage extends Component {
         errors={this.state.errors}
         user={this.state.user}
       />
+      
       ):
       (
         <Redirect to='/login' />

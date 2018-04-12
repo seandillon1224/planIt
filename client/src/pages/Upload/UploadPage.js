@@ -9,10 +9,14 @@ class UploadPage extends Component {
       img:{
         img_file:null,
         name:""
+      },
+      form: {
+        name: ""
       }
     }
     this.changeForm = this.changeForm.bind(this);
     this.fileUpload = this.fileUpload.bind(this);
+    this.saveCongratsForm = this.saveCongratsForm.bind(this);
   }
 
   changeForm(event) {
@@ -37,9 +41,10 @@ class UploadPage extends Component {
 
   saveCongratsForm(event){
     event.preventDefault();
+    console.log(this.state.form.name)
 
     const data = {
-     
+      name: this.state.form.name,
       file: this.state.img.name,
       img_file: this.state.img.img_file,
     };
@@ -54,9 +59,6 @@ class UploadPage extends Component {
   render() {
     return (
       <form>
-           <FormGroup>
-              <Input type="text" name="name" id="name" placeholder="Name" onChange={this.changeForm}/>
-          </FormGroup>
          <FormGroup encType='multipart/form-data'>
               <Label for="file">Featured Image</Label>
               <Input type="file" name="file" id="file" onChange={this.fileUpload}/>

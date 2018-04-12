@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from './components/Home'
+import Home from './pages/Home'
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ImageSave from './pages/Upload';
-import Header from './components/Header';
 import {Container} from './components/Grid';
 
 const App = () => (

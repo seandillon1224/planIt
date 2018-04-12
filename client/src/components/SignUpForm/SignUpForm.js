@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Card, CardText } from 'reactstrap';
 import {Button} from 'reactstrap';
 import {Input} from 'reactstrap';
+import UploadPage from '../../pages/Upload';
 
 
 const SignUpForm = ({onSubmit,onChange,errors,user}) => (
@@ -39,6 +40,9 @@ const SignUpForm = ({onSubmit,onChange,errors,user}) => (
           onChange={onChange}
           value={user.password}
         />
+      </div>
+      <div>
+        <UploadPage/>
       </div>
 
       <div className="button-line">
