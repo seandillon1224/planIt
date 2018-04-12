@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Jumbotron/Jumbotron.css"],"names":[],"mappings":"AAAA,cACE,cAAgB,CAGlB,cACE,cAAgB","file":"static/css/main.13ca5e2a.css","sourcesContent":[".jumbotron h1 {\n  font-size: 32px;\n}\n\n.jumbotron h2 {\n  font-size: 26px;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/components/Jumbotron/Jumbotron.css"],"sourceRoot":""}

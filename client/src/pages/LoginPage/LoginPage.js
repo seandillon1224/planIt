@@ -51,14 +51,16 @@ class LoginPage extends Component {
     const formData = `email=${email}&password=${password}`;
 
     // create an AJAX request
+ 
+    
     const xhr = new XMLHttpRequest();
     xhr.open('post', '/auth/login');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
+        console.log(xhr)
         // success
-        
 
         // change the component-container state
         this.setState({
@@ -66,7 +68,6 @@ class LoginPage extends Component {
         });
 
         // save the token
-       
         Auth.authenticateUser(xhr.response.token);
 
 
@@ -97,7 +98,6 @@ class LoginPage extends Component {
       }
     });
     xhr.send(formData);
-    console.log(formData)
   }
 
   /**
@@ -120,10 +120,14 @@ class LoginPage extends Component {
    */
   render() {
     return (
-    
+      // <div>
+      //   LoginPage
+      // </div> 
       <div>
-      <Header/>
-      {this.state.redirect == false ? (   
+      <div>
+        <Header/>
+      </div>
+      {this.state.redirect == false? (   
       <LoginForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
@@ -138,7 +142,6 @@ class LoginPage extends Component {
       </div>
     );
   }
-  
 
 }
 

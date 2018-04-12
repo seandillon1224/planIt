@@ -41,9 +41,9 @@ const SignUpForm = ({onSubmit,onChange,errors,user}) => (
           value={user.password}
         />
       </div>
-      <div>
+      {/* <div>
         <UploadPage/>
-      </div>
+      </div> */}
 
       <div className="button-line">
         <Button type="submit" label="Create New Account" />

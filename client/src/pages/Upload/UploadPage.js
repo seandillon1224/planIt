@@ -58,7 +58,7 @@ class UploadPage extends Component {
 
   render() {
     return (
-      <form>
+      <div>
          <FormGroup encType='multipart/form-data'>
               <Label for="file">Featured Image</Label>
               <Input type="file" name="file" id="file" onChange={this.fileUpload}/>
@@ -71,8 +71,8 @@ class UploadPage extends Component {
                   Save Image.
               </p>
           </div>
-      </form>
-    );
+      </div>
+    )
   }
 }
 

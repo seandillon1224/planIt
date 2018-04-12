@@ -1,7 +1,8 @@
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
-const router = require("express").Router();
+
+const router = new express.Router();
 
 /**
  * Validate the sign up form
@@ -127,7 +128,6 @@ router.post('/login', (req, res, next) => {
     if (err) {
       if (err.name === 'IncorrectCredentialsError') {
         return res.status(400).json({
-    
           success: false,
           message: err.message
         });

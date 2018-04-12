@@ -14,7 +14,7 @@ var fs = require("fs");
 require('./models').connect(config.dbUri);
 
 // Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-app.use(routes);
+// app.use(routes);
 // pass the passport middleware
 app.use(passport.initialize());
 
@@ -37,10 +37,12 @@ const authCheckMiddleware = require('./middleware/auth-check');
 app.use('/api', authCheckMiddleware);
 
 // routes
-const authRoutes = require('./routes/api/auth');
+const authRoutes = require('./routes/auth');
 const apiRoutes = require('./routes/api');
+const nonAuthRoutes = require('./routes/nonauth')
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
+app.use('/nonauth', nonAuthRoutes)
 
 
 
