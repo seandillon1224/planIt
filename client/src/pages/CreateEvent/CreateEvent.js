@@ -18,8 +18,6 @@ class Events extends Component {
     description: "",
     creator: localStorage.getItem('usrname').name,
     dates: []
-
-        
   };
 
   // When the component mounts, load all books and save them to this.state.books
@@ -69,7 +67,7 @@ class Events extends Component {
         dates: this.state.dates,
         creator: this.state.creator
       })
-        .then(res => this.loadArticles())
+        .then(res => this.loadEvents())
         .catch(err => console.log(err));
   };
 
