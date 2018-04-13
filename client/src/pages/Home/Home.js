@@ -10,7 +10,6 @@ import Jumbotron from "../../components/Jumbotron";
 import Panel from "../../components/Panel";
 import Footer from "../../components/Footer";
 
-const loggedIn = Auth.isUserAuthenticated();
 
 
 class Home extends React.Component {
