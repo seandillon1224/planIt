@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import InfiniteCalendar, {
     Calendar,
-    defaultMultipleDateInterpolation,
+    // defaultMultipleDateInterpolation,
     withMultipleDates,
   } from 'react-infinite-calendar';
   import 'react-infinite-calendar/styles.css';
+  import format from 'date-fns/format';
+import parse from 'date-fns/parse';
   
 const MultipleDatesCalendar = withMultipleDates(Calendar);
 
 
+function defaultMultipleDateInterpolation(date, selected) {
+  const selectedMap = selected.map(date => format(date, 'YYYY-MM-DD'));
+  const index = selectedMap.indexOf(format(date, 'YYYY-MM-DD'));
+  let yourSelect = selectedMap;
+  
+
+  return (index === -1)
+    ? [...selected, date]
+    : [...selected.slice(0, index), ...selected.slice(index+1)];
+}
+
 class DatePicker extends Component {
-    
+  
+ 
+  
 	render(){
 		return (
-      <InfiniteCalendar 
+      <InfiniteCalendar
+    
 
-      
             displayOptions={{
                 layout: 'portrait',
                 showOverlay: false,
@@ -30,14 +45,14 @@ class DatePicker extends Component {
      * You could re-implement this if this isn't the behavior you want.
      */
 
-     
+    
     width={585}
     height={500}
     interpolateSelection={defaultMultipleDateInterpolation}
     selected={[new Date()]}
   />
     
-		)
+    )
   }
   
 }

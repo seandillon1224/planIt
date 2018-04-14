@@ -21,25 +21,25 @@ class Events extends Component {
   };
 
   // When the component mounts, load all books and save them to this.state.books
-  componentDidMount() {
-    this.loadEvents();
-    console.log(this.state.yourEvents)
+//   componentDidMount() {
+//     this.loadEvents();
+//     console.log(this.state.yourEvents)
 
-  }
+//   }
 
   componentDidUpdate() {
       console.log(this.state.yourEvents)
       console.log('updated')
   }
   // Loads all books  and sets them to this.state.books
-  loadEvents = id => {
-    API.getEvents(id)
-      .then(res =>
-        this.setState({ yourEvents: res.data })
+//   loadEvents = id => {
+//     API.getEvents(id)
+//       .then(res =>
+//         this.setState({ yourEvents: res.data })
         
-      )
-      .catch(err => console.log(err));
-  };
+//       )
+//       .catch(err => console.log(err));
+//   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteEvents = id => {
@@ -58,8 +58,7 @@ class Events extends Component {
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  handleFormSubmit = event => {
-    event.preventDefault();
+  handleFormSubmit = data => {
       API.saveEvents({
         guests: this.state.guests,
         event: this.state.event,

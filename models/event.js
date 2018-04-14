@@ -19,15 +19,15 @@ var EventSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  dates: {
+  dates: [{
     type: String
-  },
+  }],
   
   guests: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
-      dates:"string"
+      // dates:"string"
     }
     
   ]
