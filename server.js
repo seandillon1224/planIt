@@ -1,14 +1,20 @@
-const express = require("express");
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const app = express();
 const PORT = process.env.PORT || 3001;
 const passport = require('passport');
 const config = require('./config');
 var multer = require("multer");
 var upload = multer({storage: multer.memoryStorage({})});
 var fs = require("fs");
+
+//requirements for socket messaging
+//  const SocketManager = require('./client/src/SocketManager')
+
+//  io.on('connection', SocketManager)
 
 // connect to the database and load models
 require('./models').connect(config.dbUri);
@@ -46,7 +52,7 @@ app.use('/nonauth', nonAuthRoutes)
 
 
 
-// Start the API server
+// Start the API app
 app.listen(PORT, () =>
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
+  console.log(`🌎  ==> API server now listening on PORT ${PORT}!`)
 );
