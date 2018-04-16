@@ -6,7 +6,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import AddBtn from "../../components/AddBtn";
-import API from '../../utils/API';
+import API from "../../utils/API";
 
 
 class Events extends Component {
@@ -59,15 +59,16 @@ class Events extends Component {
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   handleFormSubmit = data => {
-      API.saveEvents({
-        guests: this.state.guests,
-        event: this.state.event,
-        description: this.state.description,
-        dates: this.state.dates,
-        creator: this.state.creator
-      })
-        .then(res => this.loadEvents())
-        .catch(err => console.log(err));
+        if (this.state.event && this.state.guests) {
+          API.saveEvent({
+            event: this.state.event
+            // guests: this.state.guests,
+            // description: this.state.description
+          })
+            .then(res => this.loadEvents())
+            .catch(err => console.log(err));
+        }
+
   };
 
   render() {

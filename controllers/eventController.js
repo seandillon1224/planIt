@@ -16,16 +16,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    const event= {
-      guests: req.body.guests,
-      event: req.body.event,
-      description: req.body.description,
-      dates: req.body.dates
-    };
     db.Event
-      console.log(event)
-      .create(event)
-      .then(dbEvent => res.json(dbEvent))
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

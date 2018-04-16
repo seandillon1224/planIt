@@ -9,8 +9,7 @@ var EventSchema = new Schema({
   // `name` must be of type String
   // `name` must be unique, the default mongoose error message is thrown if a duplicate value is given
   event: {
-    type: String,
-    unique: true
+    type: String
   },
   description: {
     type: String
@@ -34,7 +33,7 @@ var EventSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Event = mongoose.model("Event", EventSchema);
+const Event = mongoose.model("Event", EventSchema);
 
 // Export the Event model
 module.exports = Event;
