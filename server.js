@@ -40,14 +40,14 @@ passport.use('local-login', localLoginStrategy);
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require('./middleware/auth-check');
-app.use('/api', authCheckMiddleware);
+app.use('/api/api', authCheckMiddleware);
 
 // routes
 const authRoutes = require('./routes/auth');
-const apiRoutes = require('./routes/api');
+const apiRoutes = require('./routes/api/api');
 const nonAuthRoutes = require('./routes/nonauth')
 app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
+app.use('/api/api', apiRoutes);
 app.use('/nonauth', nonAuthRoutes)
 
 
