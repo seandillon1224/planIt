@@ -8,5 +8,5 @@ node_modules
 *.png
 *.jpg
 
-
+yarn.lock
 package-lock.json
