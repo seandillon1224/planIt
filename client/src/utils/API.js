@@ -26,7 +26,7 @@ saveEvents: function(eventData) {
   return axios.post("/api/events", eventData);
 },
 getNewEvents: function() {
-  return axios.get("/api/events/events")
+  return axios.get("/api/events")
 }
 
 };

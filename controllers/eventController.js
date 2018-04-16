@@ -17,14 +17,13 @@ module.exports = {
   },
   create: function(req, res) {
     const event= {
-      _id: req.body._id,
       guests: req.body.guests,
       event: req.body.event,
       description: req.body.description,
-      dates: req.body.dates,
-      creator: req.body.creator
+      dates: req.body.dates
     };
     db.Event
+      console.log(event)
       .create(event)
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));

@@ -73,10 +73,10 @@ class Events extends Component {
   render() {
     return (
       <Container fluid>
-      <Row>
+      <form>
           <div>{JSON.parse(localStorage.getItem('usrname')).name}</div>
           <Col size = "md-12">
-          <AddBtn onClick={() => this.handleFormSubmit(this.state.guests, this.state.event, this.state.description, this.state.dates, this.state.creator)}/>
+          {/* <AddBtn onClick={() => this.handleFormSubmit(this.state.guests, this.state.event, this.state.description, this.state.dates, this.state.creator)}/> */}
           <Input
                 value={this.state.guests}
                 onChange={this.handleInputChange}
@@ -102,7 +102,14 @@ class Events extends Component {
                 placeholder="Dates"
               />
           </Col>  
-        </Row>
+
+              <FormBtn
+                disabled={!(this.state.event && this.state.guests)}
+                onClick={this.handleFormSubmit}
+              >
+                Submit Event
+              </FormBtn>
+      </form>
     <Row>
     <Col size = "md-12">
     <Jumbotron>
