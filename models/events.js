@@ -14,10 +14,10 @@ var EventsSchema = new Schema({
   description: {
     type: String
   },
-  // creator:  {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User'
-  // },
+  creator:  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   dates: [{
     type: String
   }],

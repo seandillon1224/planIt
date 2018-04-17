@@ -16,7 +16,7 @@ class Events extends Component {
     event: "",
     guests: [],
     description: "",
-    creator: localStorage.getItem('usrname').name,
+    creator: JSON.parse(localStorage.getItem('usrname')).name,
     dates: []
   };
 
@@ -61,9 +61,9 @@ class Events extends Component {
   handleFormSubmit = data => {
         if (this.state.event && this.state.guests) {
           API.saveEvent({
-            event: this.state.event
-            // guests: this.state.guests,
-            // description: this.state.description
+            event: this.state.event,
+            description: this.state.description,
+            creator: this.state.creator
           })
             .then(res => this.loadEvents())
             .catch(err => console.log(err));
@@ -102,6 +102,8 @@ class Events extends Component {
                 name="dates"
                 placeholder="Dates"
               />
+
+
           </Col>  
 
               <FormBtn

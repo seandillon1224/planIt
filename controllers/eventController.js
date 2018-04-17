@@ -1,7 +1,6 @@
 // const Events = require("mongoose").model("Events")
 const Events = require("../models/events");
-
-
+const User = require("../models/user");
 
 // Defining methods for the articleController
 module.exports = {
@@ -23,10 +22,27 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    Events
-      .create(req.body)
+ 
+
+    User.findOne({name: req.body.creator}, (err, user) => {
+      if (err) throw new Error(err);
+      // We create an object containing the data from our post request
+      const newPost = {
+         event: req.body.event,
+         description: req.body.description,
+         // in the author field we add our current user id as a reference
+         creator: user._id
+      };
+      console.log(newPost)
+      Events.create(newPost)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+      
+   });
+    // Events
+    //   .create(req.body)
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
     Events
