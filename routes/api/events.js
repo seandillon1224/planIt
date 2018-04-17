@@ -3,6 +3,12 @@ const eventController = require('../../controllers/eventController')
 
 const router = new express.Router();
 
+router.get('/events/dashboard', (req, res) => {
+  res.status(200).json({
+    message: "Welcome to PlanIt"
+  });
+});
+
 router.route("/")
   .get(eventController.findAll)
   .post(eventController.create);

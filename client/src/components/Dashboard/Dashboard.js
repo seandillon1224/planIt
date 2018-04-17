@@ -16,13 +16,7 @@ const Dashboard = ({ secretData }) => (
 
     {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
   </Card>
-  <Row>
-  <Col size = "md-3"/>
-  <Col size = "md-6">
-  <DatePicker/>
-  </Col>
-  <Col size = 'md-3'/>
-  </Row>
+ 
   <Row>
   
   <Col size = "md-12">

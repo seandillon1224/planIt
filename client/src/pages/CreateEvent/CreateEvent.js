@@ -8,40 +8,51 @@ import DeleteBtn from "../../components/DeleteBtn";
 import AddBtn from "../../components/AddBtn";
 import GuestSearch from "../../components/GuestSearch";
 import API from "../../utils/API";
+import InfiniteCalendar, {
+  Calendar,
+  withMultipleDates,
+} from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
 
+const MultipleDatesCalendar = withMultipleDates(Calendar);
 
+let yourSelected = []
+
+function defaultMultipleDateInterpolation(date, selected) {
+  const selectedMap = selected.map(date => format(date, 'YYYY-MM-DD'));
+  const index = selectedMap.indexOf(format(date, 'YYYY-MM-DD'));
+  yourSelected = selectedMap;
+  
+
+  return (index === -1)
+    ? [...selected, date]
+    : [...selected.slice(0, index), ...selected.slice(index+1)];
+}
 class Events extends Component {
-  // Setting our component's initial state
-// Setting our component's initial state
 constructor(props) {
   super(props);
   this.state = {
-      listDataFromChild: "",
-      yourEvents: [],
+  yourEvents: [],
   event: "",
   guests: [],
   description: "",
   creator: JSON.parse(localStorage.getItem('usrname')).name,
-  dates: ["d"]
   };    
 }
 
-myCallback = dataFromChild => {
-  this.setState({ listDataFromChild: dataFromChild });
   
-}
-
-
   // When the component mounts, load all books and save them to this.state.books
-    componentDidMount() {
+  componentDidMount() {
     this.loadEvents();
-    console.log(this.state.yourEvents)
 
   }
 
   componentDidUpdate() {
-      console.log(this.state.guests)
-      console.log('updated')
+    console.log(yourSelected)
+    
+      
   }
 
   loadEvents = () => {
@@ -96,13 +107,14 @@ myCallback = dataFromChild => {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault()
+    console.log(this.state.dates)
         if (this.state.event && this.state.guests) {
           API.saveEvent({
             creator: this.state.creator,
             event: this.state.event,
             guests: this.state.guests,
-            description: this.state.description
-            // dates: this.state.dates
+            description: this.state.description,
+            dates: yourSelected
           })
             .then(res => this.loadEvents())
             .catch(err => console.log(err));
@@ -115,12 +127,29 @@ myCallback = dataFromChild => {
       <Container fluid>
       <form>
           <div>{JSON.parse(localStorage.getItem('usrname')).name}</div>
-          <Col size = "md-12">
-          {/* <AddBtn onClick={() => this.handleFormSubmit(this.state.guests, this.state.event, this.state.description, this.state.dates, this.state.creator)}/> */}
-          
-          <GuestSearch>
-          {/* <AddBtn onClick={() => this.addUser(r._id)} /> */}
-          </GuestSearch>
+          <Row>
+            <Col size = "md-3">
+            </Col>
+            <Col size = "md-6">
+            
+          <InfiniteCalendar
+         displayOptions={{
+              layout: 'portrait',
+            showOverlay: false,
+            shouldHeaderAnimate: true,
+           }}
+Component={MultipleDatesCalendar}
+width={585}
+height={500}
+interpolateSelection={defaultMultipleDateInterpolation}
+selected={[new Date()]}
+/>
+</Col>
+            <Col size = "md-3">
+            </Col>
+          </Row>
+<Col size = "md-12">
+          <GuestSearch/>
 
           <Input
                 value={this.state.guests}
@@ -141,11 +170,8 @@ myCallback = dataFromChild => {
                 name="description"
                 placeholder="Description"
               />
-
-
-
           </Col>  
-
+              
               <FormBtn
                 disabled={!(this.state.event && this.state.guests)}
                 onClick={this.handleFormSubmit}
