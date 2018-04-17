@@ -1,34 +1,41 @@
-const db = require("../models");
+// const Events = require("mongoose").model("Events")
+const Events = require("../models/events");
+
+
 
 // Defining methods for the articleController
 module.exports = {
   findAll: function(req, res) {
-    db.Event
+    Events
       .find(req.query)
       .sort({ date: -1 })
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
+
+    // res.json({
+    //   track: 'events'
+    // });
   },
   findById: function(req, res) {
-    db.Event
+    Events
       .findById(req.params.id)
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Event
+    Events
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Event
+    Events
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Event
+    Events
       .findById({ _id: req.params.id })
       .then(dbEvent => dbEvent.remove())
       .then(dbEvent => res.json(dbEvent))

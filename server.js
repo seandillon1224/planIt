@@ -17,6 +17,7 @@ var fs = require("fs");
 //  io.on('connection', SocketManager)
 
 // connect to the database and load models
+
 require('./models').connect(config.dbUri);
 
 // Configure body parser for AJAX requests
@@ -40,7 +41,7 @@ passport.use('local-login', localLoginStrategy);
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require('./middleware/auth-check');
-app.use('/api/', authCheckMiddleware);
+// app.use('/api/', authCheckMiddleware);
 
 // routes
 const authRoutes = require('./routes/auth');
