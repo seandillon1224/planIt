@@ -23,7 +23,6 @@ module.exports = {
   },
   create: function(req, res) {
  
-
     User.findOne({name: req.body.creator}, (err, user) => {
       if (err) throw new Error(err);
       // We create an object containing the data from our post request
@@ -37,6 +36,9 @@ module.exports = {
       Events.create(newPost)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+
+      console.log(newPost)
+
       
    });
     // Events

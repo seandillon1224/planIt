@@ -6,4 +6,8 @@ router.route("/")
   .get(userController.findAll)
 
 
+router.route("/:name")
+  .get(userController.findByName)
+
+
 module.exports = router;

@@ -6,6 +6,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import AddBtn from "../../components/AddBtn";
+import GuestSearch from "../../components/GuestSearch";
 import API from "../../utils/API";
 
 
@@ -28,19 +29,26 @@ class Events extends Component {
 //   }
 
   componentDidUpdate() {
-      console.log(this.state.yourEvents)
+      console.log(this.state.guests)
       console.log('updated')
   }
-  // Loads all books  and sets them to this.state.books
-//   loadEvents = id => {
-//     API.getEvents(id)
-//       .then(res =>
-//         this.setState({ yourEvents: res.data })
-        
-//       )
-//       .catch(err => console.log(err));
-//   };
 
+  //load users
+  // componentDidMount() {
+  //   this.loadUsers();
+  // }
+
+  // get all users
+  // loadUsers = () => {
+  //   API.getUsers()
+  //     .then(res =>
+  //       this.setState({ guests: res.data, name: "", email: ""})
+        
+  //     )
+  //     .catch(err => console.log(err));
+  // };
+
+  
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteEvents = id => {
     API.deleteEvents(id)
@@ -78,12 +86,16 @@ class Events extends Component {
           <div>{JSON.parse(localStorage.getItem('usrname')).name}</div>
           <Col size = "md-12">
           {/* <AddBtn onClick={() => this.handleFormSubmit(this.state.guests, this.state.event, this.state.description, this.state.dates, this.state.creator)}/> */}
+          
+          <GuestSearch/>
+
           <Input
                 value={this.state.guests}
                 onChange={this.handleInputChange}
                 name="guests"
                 placeholder="Guests"
               />
+
          <Input
                 value={this.state.event}
                 onChange={this.handleInputChange}

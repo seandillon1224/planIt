@@ -13,9 +13,9 @@ export default {
 // Export an object with a "search" method that searches the Giphy API for the passed query
 
 
-// Gets the book with the given id
-getEvents: function(id) {
-  return axios.get("/api/events/" + id);
+// Gets user list
+getUsers: function() {
+  return axios.get("/api/users/");
 },
 // Deletes the book with the given id
 deleteEvents: function(id) {
