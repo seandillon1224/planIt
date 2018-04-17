@@ -24,9 +24,7 @@ var EventsSchema = new Schema({
   
   guests: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      // dates:"string"
+      type: String
     }
     
   ]

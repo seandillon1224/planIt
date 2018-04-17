@@ -12,26 +12,54 @@ import API from "../../utils/API";
 
 class Events extends Component {
   // Setting our component's initial state
-  state = {
-    yourEvents: [],
-    event: "",
-    guests: [],
-    description: "",
-    creator: JSON.parse(localStorage.getItem('usrname')).name,
-    dates: []
-  };
+// Setting our component's initial state
+constructor(props) {
+  super(props);
+  this.state = {
+      listDataFromChild: "",
+      yourEvents: [],
+  event: "",
+  guests: [],
+  description: "",
+  creator: JSON.parse(localStorage.getItem('usrname')).name,
+  dates: ["d"]
+  };    
+}
+
+myCallback = dataFromChild => {
+  this.setState({ listDataFromChild: dataFromChild });
+  
+}
+
 
   // When the component mounts, load all books and save them to this.state.books
-//   componentDidMount() {
-//     this.loadEvents();
-//     console.log(this.state.yourEvents)
+    componentDidMount() {
+    this.loadEvents();
+    console.log(this.state.yourEvents)
 
-//   }
+  }
 
   componentDidUpdate() {
       console.log(this.state.guests)
       console.log('updated')
   }
+
+  loadEvents = () => {
+    API.getEvents()
+      .then(res =>
+        this.setState({ yourEvents: res.data })
+        
+      )
+      .catch(err => console.log(err));
+  };
+
+  // addUser = (id) => {
+  //   API.addUser(id)
+  //   .then(res => this.getUsers())
+  //     .catch(err => console.log(err));
+  // };
+
+
 
   //load users
   // componentDidMount() {
@@ -50,7 +78,7 @@ class Events extends Component {
 
   
   // Deletes a book from the database with a given id, then reloads books from the db
-  deleteEvents = id => {
+  deleteEvent = id => {
     API.deleteEvents(id)
       .then(res => this.loadEvents())
       .catch(err => console.log(err));
@@ -66,12 +94,15 @@ class Events extends Component {
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  handleFormSubmit = data => {
+  handleFormSubmit = event => {
+    event.preventDefault()
         if (this.state.event && this.state.guests) {
           API.saveEvent({
+            creator: this.state.creator,
             event: this.state.event,
-            description: this.state.description,
-            creator: this.state.creator
+            guests: this.state.guests,
+            description: this.state.description
+            // dates: this.state.dates
           })
             .then(res => this.loadEvents())
             .catch(err => console.log(err));
@@ -87,7 +118,9 @@ class Events extends Component {
           <Col size = "md-12">
           {/* <AddBtn onClick={() => this.handleFormSubmit(this.state.guests, this.state.event, this.state.description, this.state.dates, this.state.creator)}/> */}
           
-          <GuestSearch/>
+          <GuestSearch>
+          {/* <AddBtn onClick={() => this.addUser(r._id)} /> */}
+          </GuestSearch>
 
           <Input
                 value={this.state.guests}
@@ -108,12 +141,7 @@ class Events extends Component {
                 name="description"
                 placeholder="Description"
               />
-         <Input
-                value={this.state.dates}
-                onChange={this.handleInputChange}
-                name="dates"
-                placeholder="Dates"
-              />
+
 
 
           </Col>  
@@ -137,11 +165,11 @@ class Events extends Component {
                     <ListItem key={event._id}>
                       <a href={"/event/" + event._id}>
                         <strong>
-                          <div>Creator: {event.title}</div>
-                          <div>Description:  {event.url}</div>
-                          <div>Dates: {event.date}</div>
-                          <div>Guests: {event.title}</div>
-                          <div>Event: {event.url}</div>
+                        <div>Creator: {event.creator}</div>
+                          <div>Description:  {event.description}</div>
+                          <div>Dates: {event.dates}</div>
+                          <div>Guests: {event.guests}</div>
+                          <div>Event: {event.event}</div>
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteEvent(event._id)} />

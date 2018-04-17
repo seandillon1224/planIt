@@ -14,8 +14,13 @@ export default {
 
 
 // Gets user list
+
+
 getUsers: function() {
   return axios.get("/api/users/");
+},
+getEvents: function() {
+  return axios.get("/api/events/");
 },
 // Deletes the book with the given id
 deleteEvents: function(id) {

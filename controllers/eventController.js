@@ -27,10 +27,12 @@ module.exports = {
       if (err) throw new Error(err);
       // We create an object containing the data from our post request
       const newPost = {
-         event: req.body.event,
-         description: req.body.description,
-         // in the author field we add our current user id as a reference
-         creator: user._id
+        event: req.body.event,
+        description: req.body.description,
+        guests: req.body.guests,
+        dates: req.body.dates,
+        // in the author field we add our current user id yas a reference
+        creator: user._id
       };
       console.log(newPost)
       Events.create(newPost)
