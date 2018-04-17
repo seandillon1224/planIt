@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Auth from '../../modules/Auth';
+import Header from '../../components/Header';
 import {Col, Row, Container} from '../../components/Grid';
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -34,7 +35,6 @@ class Events extends Component {
 constructor(props) {
   super(props);
   this.state = {
-  yourEvents: [],
   event: "",
   guests: [],
   description: "",
@@ -45,24 +45,16 @@ constructor(props) {
   
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
-    this.loadEvents();
+    // this.loadEvents();
 
   }
 
   componentDidUpdate() {
-    console.log(yourSelected)
+    // console.log(yourSelected)
     
       
   }
 
-  loadEvents = () => {
-    API.getEvents()
-      .then(res =>
-        this.setState({ yourEvents: res.data })
-        
-      )
-      .catch(err => console.log(err));
-  };
 
   // addUser = (id) => {
   //   API.addUser(id)
@@ -87,13 +79,6 @@ constructor(props) {
   //     .catch(err => console.log(err));
   // };
 
-  
-  // Deletes a book from the database with a given id, then reloads books from the db
-  deleteEvent = id => {
-    API.deleteEvents(id)
-      .then(res => this.loadEvents())
-      .catch(err => console.log(err));
-  };
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
@@ -125,6 +110,7 @@ constructor(props) {
   render() {
     return (
       <Container fluid>
+      <Header/>
       <form>
           <div>{JSON.parse(localStorage.getItem('usrname')).name}</div>
           <Row>
@@ -179,35 +165,6 @@ selected={[new Date()]}
                 Submit Event
               </FormBtn>
       </form>
-    <Row>
-    <Col size = "md-12">
-    <Jumbotron>
-              <h1>Saved Events</h1>
-            </Jumbotron>
-            {this.state.yourEvents.length ? (
-              <List>
-                {this.state.yourEvents.map(event => {
-                  return (
-                    <ListItem key={event._id}>
-                      <a href={"/event/" + event._id}>
-                        <strong>
-                        <div>Creator: {event.creator}</div>
-                          <div>Description:  {event.description}</div>
-                          <div>Dates: {event.dates}</div>
-                          <div>Guests: {event.guests}</div>
-                          <div>Event: {event.event}</div>
-                        </strong>
-                      </a>
-                      <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            </Col>
-    </Row>
       </Container>
     );
   }
