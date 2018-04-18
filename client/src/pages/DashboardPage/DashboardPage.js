@@ -10,7 +10,7 @@ import API from "../../utils/API";
 import Header from '../../components/Header';
 import axios from "axios";
 
-
+let theDates = [new Date()]
 
 class DashboardPage extends Component {
 constructor(props) {
@@ -134,9 +134,7 @@ constructor(props) {
          </Jumbotron>
     <Row>
     <Col size = "md-6">
-    
               <h1 className = "bg-primary">Created Events</h1>
-          
             {this.state.yourEvents.length ? (
               <List>
                 {this.state.yourEvents.map(event => {
@@ -154,10 +152,6 @@ constructor(props) {
                         
                           ))}
 
-                          
-
-
-
                            <div>Event: {event.event}</div>
                          </strong>
                        </a>
@@ -171,9 +165,8 @@ constructor(props) {
              )}
              </Col>
      <Col size = "md-6">
-     
                <h1 className = "bg-primary">Guest Events</h1>
-             
+
              {this.state.guestEvents.length ? (
                <List>
                  {this.state.guestEvents.map(event => {
