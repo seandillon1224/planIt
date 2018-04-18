@@ -4,7 +4,7 @@ import { Card, CardTitle } from 'reactstrap';
 import Auth from '../../modules/Auth';
 import DashboardPage from '../../pages/DashboardPage';
 import Header from '../../components/Header';
-
+import "./Home.css";
 
 class Home extends React.Component {
 
