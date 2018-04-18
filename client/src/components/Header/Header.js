@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Auth from '../../modules/Auth';
-import "./Neptune_Full.jpg";
+// import "./Neptune_Full.jpg";
 
 class Header extends React.Component {
 
@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     // set the initial component state
     this.state = {
-      SiteText:  <image src = "./Neptune_Full.jpg" alt = "Neptune"></image>,
+      // SiteText:  <image src = "./Neptune_Full.jpg" alt = "Neptune"></image>,
       loginText: 'Log In',
       signupText: 'Sign up',
       userWelcomeText: 'Hello ',
@@ -36,7 +36,7 @@ class Header extends React.Component {
       
 
         <div className="top-bar-left">
-                <image src = "./Neptune_Full.jpg" alt = "Neptune"></image>
+                {/* <image src = "./Neptune_Full.jpg" alt = "Neptune"></image> */}
         </div>
 
 

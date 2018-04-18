@@ -7,6 +7,7 @@ import ImageSave from './pages/Upload';
 import {Container} from './components/Grid';
 import DashboardPage from './pages/DashboardPage';
 import Events from './pages/CreateEvent';
+import EventDetails from './pages/EventDetails';
 
 
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
       <Route exact path='/login' component={LoginPage}/>
       <Route exact path='/signup' component={SignUpPage}/>
       <Route exact path='/addevent' component={Events}/>
+      <Route exact path='/eventdetails' component={EventDetails}/>
     </Switch>
 </Router>
 </Container>

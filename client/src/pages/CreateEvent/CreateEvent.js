@@ -186,10 +186,14 @@ constructor(props) {
                       shouldHeaderAnimate: true,
                     }}
           Component={MultipleDatesCalendar}
+          
           width={585}
           height={500}
           interpolateSelection={defaultMultipleDateInterpolation}
+          min={new Date(2018, 1, 18)} // Minimum month to render
+          minDate={new Date(2018, 2, 18)} // Minimum selectable date
           selected={[new Date()]}
+          max={new Date(2020, 1, 18)}
           />
           </Col>
             <Col size = "md-3">
