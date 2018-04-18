@@ -13,7 +13,7 @@ export default {
 // Export an object with a "search" method that searches the Giphy API for the passed query
 
 getGuestEvents: (id)=> {
-  return axios.get("/api/events/" + id)
+  return axios.get("/api/guests/" + id)
 },
 // Gets user list
 getUserEvents: (id) => {

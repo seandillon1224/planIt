@@ -26,7 +26,7 @@ module.exports = {
   },
   findByGuestId: function(req, res) {
     Events
-      .find({guests: req.params.id})
+      .find({"guests.guest": req.params.id})
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },

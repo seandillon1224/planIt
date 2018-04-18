@@ -171,7 +171,7 @@ constructor(props) {
     return (
       <Container fluid>
       <Header/>
-      <form>
+      
           {/* <div>{JSON.parse(localStorage.getItem('usrname')).name}</div> */}
           <Row>
             <Col size = "md-3">
@@ -194,9 +194,11 @@ constructor(props) {
             <Col size = "md-3">
             </Col>
           </Row>
+          
+          <form>
         <Col size = "md-12">
   
- 
+                    
         
          <Input
                 value={this.state.event}

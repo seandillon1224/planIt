@@ -36,6 +36,7 @@ constructor(props) {
     // this.loadEvents(this.state.results._id);
     console.log(this.state.guestEvents)
     
+    
       
   }
   getInfo = () => {
@@ -58,8 +59,10 @@ constructor(props) {
       .then(res =>
         this.setState({ yourEvents: res.data }),
     API.getGuestEvents(id)
-        .then(res =>
-        this.setState({guestEvents: res.data}))    
+        .then(
+        res =>
+        this.setState({guestEvents: res.data}))
+        // console.log(res.data))
       )
       .catch(err => console.log(err));
   };
