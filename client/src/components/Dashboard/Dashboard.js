@@ -4,6 +4,7 @@ import { Card, CardTitle, CardText } from 'reactstrap';
 import DatePicker from '../Calendar';
 import {Row, Col, Container} from '../Grid';
 import Events from '../../pages/CreateEvent';
+import ChatContainer from '../EventChat/chats/ChatContainer';
 
 
 const Dashboard = ({ secretData }) => (
@@ -17,6 +18,8 @@ const Dashboard = ({ secretData }) => (
     {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
   </Card>
  
+  <ChatContainer/>
+
   <Row>
   
   <Col size = "md-12">
@@ -24,6 +27,8 @@ const Dashboard = ({ secretData }) => (
   </Col>
 
   </Row>
+
+
   </Container>
   
 );

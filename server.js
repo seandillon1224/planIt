@@ -1,6 +1,6 @@
 const app = require('express')();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const server = require('http').createServer(app);
+const io = module.exports.io = require('socket.io')(server);
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -12,9 +12,9 @@ var upload = multer({storage: multer.memoryStorage({})});
 var fs = require("fs");
 
 //requirements for socket messaging
-//  const SocketManager = require('./client/src/SocketManager')
+ const SocketManager = require('./client/src/SocketManager')
 
-//  io.on('connection', SocketManager)
+ io.on('connection', SocketManager)
 
 // connect to the database and load models
 
