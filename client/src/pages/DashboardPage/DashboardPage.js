@@ -5,7 +5,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
-import AddBtn from "../../components/AddBtn";
+import AddBtn from "../../components/ViewBtn";
 import API from "../../utils/API";
 import Header from '../../components/Header';
 import axios from "axios";

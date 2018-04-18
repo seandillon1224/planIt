@@ -80,7 +80,7 @@ module.exports = {
       { $pull : { guests : { _id : req.params.id  } }})
 
       
-      .then(dbEvent => console.log(dbEvent))
+      .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   }
 };
