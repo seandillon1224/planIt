@@ -18,6 +18,7 @@ import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import axios from "axios";
 import "./CreateEvent.css"
+import Footer from '../../components/Footer';
 
 const MultipleDatesCalendar = withMultipleDates(Calendar);
 
@@ -242,7 +243,9 @@ constructor(props) {
               Submit Event
               </FormBtn>
       </form>
+      <Footer/>
       </Container>
+      
     );
   }
 }

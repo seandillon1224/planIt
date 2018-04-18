@@ -3,7 +3,9 @@ import SignUpForm from '../../components/SignUpForm';
 import {Redirect} from 'react-router-dom';
 import Header from '../../components/Header';
 import UploadPage from '../Upload';
-
+import {Container} from '../../components/Grid';
+import Footer from '../../components/Footer';
+ 
 class SignUpPage extends Component {
 
   /**
@@ -103,12 +105,15 @@ class SignUpPage extends Component {
       <div>
         <Header/>
       {this.state.redirect == false ?(
+        <Container>
       <SignUpForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
       />
+      <Footer/>
+      </Container>
       
       ):
       (

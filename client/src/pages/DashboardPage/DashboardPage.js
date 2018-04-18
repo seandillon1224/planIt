@@ -9,7 +9,17 @@ import AddBtn from "../../components/AddBtn";
 import API from "../../utils/API";
 import Header from '../../components/Header';
 import axios from "axios";
+import InfiniteCalendar, {
+  Calendar,
+  defaultMultipleDateInterpolation,
+  withMultipleDates,
+} from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
+import Footer from '../../components/Footer';
 
+const MultipleDatesCalendar = withMultipleDates(Calendar);
 let theDates = [new Date()]
 
 class DashboardPage extends Component {
@@ -52,6 +62,35 @@ constructor(props) {
       //  Events(this.state.results._id)
     }
   };
+
+  onClick = (e) => {
+    this.getInfo()
+      
+    let Data=e.target.getAttribute('data')
+    
+    let guestData={guest: Data}
+  
+    const mappedData = this.state.yourEvents.filter(x => x._id === guestData.guest)
+    const mappedDates = mappedData.dates
+    console.log(mappedData[0].dates)
+    theDates=mappedData[0].dates
+  
+  }
+
+  onClickGuest = (e) => {
+    this.getInfo()
+    console.log(this.state.guestEvents)
+    let Data=e.target.getAttribute('data')
+    
+    let guestData={guest: Data}
+    console.log(guestData)
+  
+    const mappedData = this.state.guestEvents.filter(x => x._id === guestData.guest)
+    const mappedDates = mappedData.dates
+    console.log(mappedData[0].dates)
+    theDates=mappedData[0].dates
+  
+  }
 
 
   loadEvents = id => {
@@ -132,6 +171,27 @@ constructor(props) {
               The World's Number One Planning App
             </h2>
          </Jumbotron>
+         <Row>
+            <Col size = "md-3">
+            </Col>
+            <Col size = "md-6">
+            
+                    <InfiniteCalendar
+                  displayOptions={{
+                        layout: 'portrait',
+                      showOverlay: false,
+                      shouldHeaderAnimate: true,
+                    }}
+          Component={MultipleDatesCalendar}
+          width={585}
+          height={500}
+          interpolateSelection={defaultMultipleDateInterpolation}
+          selected={theDates}
+          />
+          </Col>
+            <Col size = "md-3">
+            </Col>
+          </Row>
     <Row>
     <Col size = "md-6">
               <h1 className = "bg-primary">Created Events</h1>
@@ -140,7 +200,8 @@ constructor(props) {
                 {this.state.yourEvents.map(event => {
                   return (
                       <ListItem key={event._id}>
-                       <a href={"/event/" + event._id}>
+                      <AddBtn data={event._id} onClick={this.onClick}> Check out Dates</AddBtn>
+                      
                          <strong>
                         <div>Creator: {event.creator.name}</div>
                            <div>Description:  {event.description}</div>
@@ -154,7 +215,7 @@ constructor(props) {
 
                            <div>Event: {event.event}</div>
                          </strong>
-                       </a>
+                       
                        <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
                      </ListItem>
                    );
@@ -172,7 +233,7 @@ constructor(props) {
                  {this.state.guestEvents.map(event => {
                    return (
                      <ListItem key={event._id}>
-                       <a href={"/event/" + event._id}>
+                     <AddBtn data={event._id} onClick={this.onClickGuest}> Check out Dates</AddBtn>
                          <strong>
                         <div>Creator: {event.creator.name}</div>
                            <div>Description:  {event.description}</div>
@@ -184,7 +245,7 @@ constructor(props) {
                           ))}
                            <div>Event: {event.event}</div>
                          </strong>
-                       </a>
+                       
                       {/* <DeleteBtn onClick={() => this.deleteEvent(event._id)} /> */}
                     </ListItem>
                   );
@@ -195,6 +256,7 @@ constructor(props) {
             )}
             </Col>
     </Row>
+    <Footer/>
       </Container>
     )}
     </div>

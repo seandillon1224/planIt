@@ -45,7 +45,7 @@ class UploadPage extends Component {
 
     const data = {
       name: this.state.form.name,
-      file: this.state.img.name,
+      file: JSON.parse(localStorage.getItem('usrname')).name,
       img_file: this.state.img.img_file,
     };
     API.saveEmail(data)

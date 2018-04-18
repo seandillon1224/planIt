@@ -3,6 +3,7 @@ import LoginForm from '../../components/LoginForm';
 import Auth from '../../modules/Auth';
 import {Redirect} from 'react-router-dom';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 class LoginPage extends Component {
 
@@ -139,6 +140,7 @@ class LoginPage extends Component {
         
       )
       }
+      <Footer/>
       </div>
     );
   }

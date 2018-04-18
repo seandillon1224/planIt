@@ -102,11 +102,6 @@ onClick = (e) => {
     
       
   }
-  something() {
-    let dated = []
-    const dateArray = this.state.yourEvents.map(mapped => dated.push(mapped.dates))
-    console.log(dated)
-  }
   // loadEvents = id => {
   //   API.getUserEvents(id)
   //     .then(res =>
