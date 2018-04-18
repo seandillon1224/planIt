@@ -16,6 +16,7 @@ router.route("/")
   router
   .route("/:id")
   .get(eventController.findById)
+  .get(eventController.findByGuestId)
   .delete(eventController.remove);
 
 

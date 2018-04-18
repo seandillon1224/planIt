@@ -21,6 +21,12 @@ module.exports = {
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },
+  findByGuestId: function(req, res) {
+    Events
+      .find({guests: req.params.id})
+      .then(dbEvent => res.json(dbEvent))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
  
     User.findOne({name: req.body.creator}, (err, user) => {

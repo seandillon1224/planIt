@@ -17,7 +17,8 @@ constructor(props) {
   super(props);
   this.state = {
   yourEvents: [],
-  results: []
+  results: [],
+  guestEvents: []
   };    
 }
 
@@ -33,7 +34,7 @@ constructor(props) {
   componentDidUpdate() {
     // this.getInfo()
     // this.loadEvents(this.state.results._id);
-    console.log(this.state.yourEvents)
+    console.log(this.state.guestEvents)
     
       
   }
@@ -41,18 +42,22 @@ constructor(props) {
     axios.get(`/api/users/${JSON.parse(localStorage.getItem('usrname')).name}`)
       .then(res =>
         this.loadEvents(res.data[0]._id)
-        // console.log(res.data[0]._id)
       )
+          // this.loa
+        // console.log(res.data[0]._id)
+      
       .catch(err => console.log(err));
-      // this.loadEvents(this.state.results._id)
+    //  Events(this.state.results._id)
   };
 
 
   loadEvents = id => {
     API.getUserEvents(id)
       .then(res =>
-        this.setState({ yourEvents: res.data })
-        
+        this.setState({ yourEvents: res.data }),
+    API.getGuestEvents(id)
+        .then(res =>
+        this.setState({guestEvents: res.data}))    
       )
       .catch(err => console.log(err));
   };
@@ -102,9 +107,9 @@ constructor(props) {
             </h2>
          </Jumbotron>
     <Row>
-    <Col size = "md-12">
+    <Col size = "md-6">
     <Jumbotron>
-              <h1>Saved Events</h1>
+              <h1>Created Events</h1>
             </Jumbotron>
             {this.state.yourEvents.length ? (
               <List>
@@ -121,6 +126,33 @@ constructor(props) {
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
+                    </ListItem>
+                  );
+                })}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+            </Col>
+    <Col size = "md-6">
+    <Jumbotron>
+              <h1>Guest Events</h1>
+            </Jumbotron>
+            {this.state.guestEvents.length ? (
+              <List>
+                {this.state.guestEvents.map(event => {
+                  return (
+                    <ListItem key={event._id}>
+                      <a href={"/event/" + event._id}>
+                        <strong>
+                        <div>Creator: {event.creator}</div>
+                          <div>Description:  {event.description}</div>
+                          <div>Dates: {event.dates}</div>
+                          <div>Guests: {event.guests}</div>
+                          <div>Event: {event.event}</div>
+                        </strong>
+                      </a>
+                      {/* <DeleteBtn onClick={() => this.deleteEvent(event._id)} /> */}
                     </ListItem>
                   );
                 })}
