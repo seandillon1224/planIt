@@ -71,5 +71,12 @@ module.exports = {
       .then(dbEvent => dbEvent.remove())
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
+  },
+  removeGuest: function(req, res) {
+    Events
+      .find({"guests.guest": req.params.id })
+      .then(dbEvent => dbEvent.remove())
+      .then(dbEvent => res.json(dbEvent))
+      .catch(err => res.status(422).json(err));
   }
 };

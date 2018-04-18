@@ -89,12 +89,17 @@ constructor(props) {
   //     )
   //     .catch(err => console.log(err));
   // };
+  deleteGuest = id => {
+    API.deleteGuest(id)
+      .then(res => this.getInfo())
+      .catch(err => console.log(err));
+  };
 
   
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteEvent = id => {
     API.deleteEvents(id)
-      .then(res => this.loadEvents())
+      .then(res => this.getInfo())
       .catch(err => console.log(err));
   };
 
@@ -144,7 +149,8 @@ constructor(props) {
                            <div>Dates: {event.dates}</div>
 
                           {event.guests.map(r => (
-                          <div key={r._id} >Guest : {r.guest.name}</div>
+                          <div key={r._id} >Guest : {r.guest.name}
+                           <DeleteBtn onClick={() => this.deleteGuest(r.guest._id)} /></div>
                         
                           ))}
 

@@ -19,6 +19,9 @@ getGuestEvents: (id)=> {
 getUserEvents: (id) => {
   return axios.get("/api/events/" + id);
 },
+deleteGuest: (id) => {
+  return axios.delete("/api/guests/" + id)
+},
 
 getUsers: function() {
   return axios.get("/api/users/");
