@@ -16,8 +16,11 @@ module.exports = {
     // });
   },
   findById: function(req, res) {
+    console.log(req.params.id)
     Events
       .find({creator: req.params.id})
+      .populate('creator')
+      .populate('guests.guest')
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },

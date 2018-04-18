@@ -118,10 +118,19 @@ constructor(props) {
                     <ListItem key={event._id}>
                       <a href={"/event/" + event._id}>
                         <strong>
-                        <div>Creator: {event.creator}</div>
+                        <div>Creator: {event.creator.name}</div>
                           <div>Description:  {event.description}</div>
                           <div>Dates: {event.dates}</div>
-                          <div>Guests: {event.guests}</div>
+
+                          {event.guests.map(r => (
+                          <div key={r._id} >Guest : {r.guest.name}</div>
+                        
+                          ))}
+
+                          
+
+
+
                           <div>Event: {event.event}</div>
                         </strong>
                       </a>
@@ -145,10 +154,13 @@ constructor(props) {
                     <ListItem key={event._id}>
                       <a href={"/event/" + event._id}>
                         <strong>
-                        <div>Creator: {event.creator}</div>
+                        <div>Creator: {event.creator.name}</div>
                           <div>Description:  {event.description}</div>
                           <div>Dates: {event.dates}</div>
-                          <div>Guests: {event.guests}</div>
+                          {event.guests.map(r => (
+                          <div key={r._id} >Guest : {r.guest.name}</div>
+                        
+                          ))}
                           <div>Event: {event.event}</div>
                         </strong>
                       </a>

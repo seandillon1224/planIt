@@ -23,9 +23,11 @@ var EventsSchema = new Schema({
   }],
   
   guests: [
+    
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      guest: {type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'},
+      date: [{type: String}]
     }
     
   ]

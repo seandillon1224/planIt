@@ -148,7 +148,10 @@ constructor(props) {
 
   onClick(e) {
     
-    let guestData=e.target.getAttribute('data')
+    let Data=e.target.getAttribute('data')
+    
+    let guestData={guest: Data}
+
     console.log(guestData)
     
     this.setState({
