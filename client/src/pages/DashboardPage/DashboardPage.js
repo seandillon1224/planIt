@@ -18,6 +18,7 @@ import 'react-infinite-calendar/styles.css';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import Footer from '../../components/Footer';
+import Panel from '../../components/Panel';
 
 const MultipleDatesCalendar = withMultipleDates(Calendar);
 let theDates = [new Date()]
@@ -28,7 +29,8 @@ constructor(props) {
   this.state = {
   yourEvents: [],
   results: [],
-  guestEvents: []
+  guestEvents: [],
+  dates: ["None"]
   };    
 }
 
@@ -74,6 +76,7 @@ constructor(props) {
     const mappedDates = mappedData.dates
     console.log(mappedData[0].dates)
     theDates=mappedData[0].dates
+    this.setState({dates: theDates})
   
   }
 
@@ -89,6 +92,7 @@ constructor(props) {
     const mappedDates = mappedData.dates
     console.log(mappedData[0].dates)
     theDates=mappedData[0].dates
+    this.setState({dates: theDates})
   
   }
 
@@ -158,6 +162,10 @@ constructor(props) {
                The World's Number One Planning App
              </h2>
           </Jumbotron>
+          <br/>
+        <Jumbotron>
+          Login to start planning!
+        </Jumbotron>
        </Container>
     ):
     (
@@ -172,8 +180,7 @@ constructor(props) {
             </h2>
          </Jumbotron>
          <Row>
-            <Col size = "md-3">
-            </Col>
+            <Panel>
             <Col size = "md-6">
             
                     <InfiniteCalendar
@@ -188,9 +195,23 @@ constructor(props) {
           interpolateSelection={defaultMultipleDateInterpolation}
           selected={theDates}
           />
+          
           </Col>
-            <Col size = "md-3">
-            </Col>
+          <Jumbotron>
+          Dates for this Event:
+          <br/>
+          <List>
+                 {this.state.dates.map(event => {
+                   return (
+                     <ListItem key={event._id}>
+                      Dates: {event}
+                    </ListItem>
+                  );
+                })}
+          </List>          
+          </Jumbotron>
+          </Panel>
+          
           </Row>
     <Row>
     <Col size = "md-6">

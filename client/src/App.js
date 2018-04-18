@@ -8,6 +8,7 @@ import {Container} from './components/Grid';
 import DashboardPage from './pages/DashboardPage';
 import Events from './pages/CreateEvent';
 import EventDetails from './pages/EventDetails';
+import Information from "./pages/Information";
 
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
       <Route exact path='/signup' component={SignUpPage}/>
       <Route exact path='/addevent' component={Events}/>
       <Route exact path='/eventdetails' component={EventDetails}/>
+      <Route exact path='/information' component={Information}/>
     </Switch>
 </Router>
 </Container>
