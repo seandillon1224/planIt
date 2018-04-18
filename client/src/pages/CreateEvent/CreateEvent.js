@@ -16,6 +16,7 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
+import axios from "axios";
 
 const MultipleDatesCalendar = withMultipleDates(Calendar);
 
@@ -39,6 +40,8 @@ constructor(props) {
   guests: [],
   description: "",
   creator: JSON.parse(localStorage.getItem('usrname')).name,
+  results:[],
+  query: ''
   };    
 }
 
@@ -80,13 +83,10 @@ constructor(props) {
   // };
 
 
-  // Handles updating component state when the user types into the input field
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+
+
+  
+
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
@@ -107,43 +107,64 @@ constructor(props) {
 
   };
 
+
+  getInfo = () => {
+    axios.get(`/api/users/${this.state.query}`)
+      .then(({ data }) => {
+        console.log(data)
+        this.setState({
+          results: data
+        })
+      })
+  }
+
+  // Handles updating component state when the user types into the input field
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    }, () => {
+
+      if (this.state.query && this.state.query.length > 1) {
+        if (this.state.query.length % 2 === 0) {
+          this.getInfo()
+        }
+      } else if (!this.state.query) {
+      }
+    })
+  }
+
   render() {
     return (
       <Container fluid>
       <Header/>
       <form>
-          <div>{JSON.parse(localStorage.getItem('usrname')).name}</div>
+          {/* <div>{JSON.parse(localStorage.getItem('usrname')).name}</div> */}
           <Row>
             <Col size = "md-3">
             </Col>
             <Col size = "md-6">
             
-          <InfiniteCalendar
-         displayOptions={{
-              layout: 'portrait',
-            showOverlay: false,
-            shouldHeaderAnimate: true,
-           }}
-Component={MultipleDatesCalendar}
-width={585}
-height={500}
-interpolateSelection={defaultMultipleDateInterpolation}
-selected={[new Date()]}
-/>
-</Col>
+                    <InfiniteCalendar
+                  displayOptions={{
+                        layout: 'portrait',
+                      showOverlay: false,
+                      shouldHeaderAnimate: true,
+                    }}
+          Component={MultipleDatesCalendar}
+          width={585}
+          height={500}
+          interpolateSelection={defaultMultipleDateInterpolation}
+          selected={[new Date()]}
+          />
+          </Col>
             <Col size = "md-3">
             </Col>
           </Row>
-<Col size = "md-12">
-          <GuestSearch/>
-
-          <Input
-                value={this.state.guests}
-                onChange={this.handleInputChange}
-                name="guests"
-                placeholder="Guests"
-              />
-
+        <Col size = "md-12">
+  
+ 
+        
          <Input
                 value={this.state.event}
                 onChange={this.handleInputChange}
@@ -156,6 +177,22 @@ selected={[new Date()]}
                 name="description"
                 placeholder="Description"
               />
+
+          <Input
+          placeholder="Search for Guest..."
+          value={this.state.query}
+          onChange={this.handleInputChange}
+          name="query"
+          />
+
+        <ul>
+          {this.state.results.map(r => (
+        <li key={r._id}>
+          {r.name} --  {r.email}
+      
+          </li>
+        ))}
+        </ul>
           </Col>  
               
               <FormBtn

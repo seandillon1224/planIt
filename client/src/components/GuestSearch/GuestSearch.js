@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Suggestions from './Suggestions'
 
-const { API_KEY } = process.env
-const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
+import { Input, TextArea, FormBtn } from "../../components/Form";
+// import Suggestions from './Suggestions'
+
 
 class Search extends Component {
   state = {
     query: '',
-    results: []
+    results: [],
+    guests: []
   }
 
   getInfo = () => {
@@ -21,10 +22,12 @@ class Search extends Component {
       })
   }
 
-  handleInputChange = () => {
+  handleInputChangez = event => {
+    const { name, value } = event.target;
     this.setState({
-      query: this.search.value
+      [name]: value
     }, () => {
+
       if (this.state.query && this.state.query.length > 1) {
         if (this.state.query.length % 2 === 0) {
           this.getInfo()
@@ -34,15 +37,38 @@ class Search extends Component {
     })
   }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+
+ 
   render() {
     return (
+      
+      
+
+
       <form>
-        <input
+        <Input
           placeholder="Search for..."
-          ref={input => this.search = input}
-          onChange={this.handleInputChange}
+          value={this.state.event}
+          onChange={this.handleInputChangez}
+          name="query"
         />
-        <Suggestions results={this.state.results} />
+
+        <ul>
+          {this.state.results.map(r => (
+        <li key={r._id}>
+          {r.name} --  {r.email}
+      
+          </li>
+        ))}
+        </ul>
+      
       </form>
     )
   }
