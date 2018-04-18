@@ -134,9 +134,9 @@ constructor(props) {
          </Jumbotron>
     <Row>
     <Col size = "md-6">
-    <Jumbotron>
-              <h1>Created Events</h1>
-            </Jumbotron>
+    
+              <h1 class = "bg-primary">Created Events</h1>
+          
             {this.state.yourEvents.length ? (
               <List>
                 {this.state.yourEvents.map(event => {
@@ -171,9 +171,9 @@ constructor(props) {
              )}
              </Col>
      <Col size = "md-6">
-     <Jumbotron>
-               <h1>Guest Events</h1>
-             </Jumbotron>
+     
+               <h1 class = "bg-primary">Guest Events</h1>
+             
              {this.state.guestEvents.length ? (
                <List>
                  {this.state.guestEvents.map(event => {

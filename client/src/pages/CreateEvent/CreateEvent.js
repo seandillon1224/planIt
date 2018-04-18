@@ -17,6 +17,7 @@ import 'react-infinite-calendar/styles.css';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import axios from "axios";
+import "./CreateEvent.css"
 
 const MultipleDatesCalendar = withMultipleDates(Calendar);
 
@@ -194,7 +195,7 @@ constructor(props) {
             <Col size = "md-3">
             </Col>
           </Row>
-          
+          <br></br>
           <form>
         <Col size = "md-12">
   
@@ -230,12 +231,11 @@ constructor(props) {
         ))}
         </ul>
           </Col>  
-              
               <FormBtn
                 disabled={!(this.state.event && this.state.guests)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Event
+              Submit Event
               </FormBtn>
       </form>
       </Container>

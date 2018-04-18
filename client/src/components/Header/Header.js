@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Auth from '../../modules/Auth';
-
+import "./Neptune_Full.jpg";
 
 class Header extends React.Component {
 
@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     // set the initial component state
     this.state = {
-      SiteText: 'WebSite Name',
+      SiteText:  <image src = "./Neptune_Full.jpg" alt = "Neptune"></image>,
       loginText: 'Log In',
       signupText: 'Sign up',
       userWelcomeText: 'Hello ',
@@ -31,12 +31,12 @@ class Header extends React.Component {
   render() {
     return (
 
-    <div className="top-bar">
+    <div className="top-bar bg-primary">
 
       
 
         <div className="top-bar-left">
-                <Link to="/">{this.state.SiteText}</Link>   
+                <image src = "./Neptune_Full.jpg" alt = "Neptune"></image>
         </div>
 
 
