@@ -135,7 +135,7 @@ constructor(props) {
     <Row>
     <Col size = "md-6">
     
-              <h1 class = "bg-primary">Created Events</h1>
+              <h1 className = "bg-primary">Created Events</h1>
           
             {this.state.yourEvents.length ? (
               <List>
@@ -172,7 +172,7 @@ constructor(props) {
              </Col>
      <Col size = "md-6">
      
-               <h1 class = "bg-primary">Guest Events</h1>
+               <h1 className = "bg-primary">Guest Events</h1>
              
              {this.state.guestEvents.length ? (
                <List>
