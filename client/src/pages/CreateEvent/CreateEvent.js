@@ -134,6 +134,14 @@ constructor(props) {
     })
   }
 
+  onClick(e) {
+    // here you know which component is that, so you can call parent method
+    
+    console.log(e)
+
+  }
+
+
   render() {
     return (
       <Container fluid>
@@ -187,10 +195,11 @@ constructor(props) {
 
         <ul>
           {this.state.results.map(r => (
-        <li key={r._id}>
-          {r.name} --  {r.email}
-      
-          </li>
+        <li key={r._id}>         
+        <p>name: {r.name}</p>
+        <p>email: {r.email}</p>
+        <AddBtn data={r._id} onClick={this.onClick}> Up</AddBtn>
+        </li>
         ))}
         </ul>
           </Col>  
