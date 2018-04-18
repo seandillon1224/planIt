@@ -11,6 +11,10 @@ var multer = require("multer");
 var upload = multer({storage: multer.memoryStorage({})});
 var fs = require("fs");
 
+<<<<<<< HEAD
+=======
+//requirements for socket messaging
+>>>>>>> 30d592be0c99df3976d71a8ed9e84a73e64460ee
 
 // connect to the database and load models
 

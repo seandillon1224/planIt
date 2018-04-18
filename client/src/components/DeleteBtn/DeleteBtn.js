@@ -5,7 +5,7 @@ import "./DeleteBtn.css";
 // That way we don't have to define them all individually
 const DeleteBtn = props => (
   <span type = "button" className="btn btn-danger delete-btn" {...props}>
-    ✗
+    Delete
   </span>
 );
 
