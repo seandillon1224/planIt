@@ -27,6 +27,8 @@ module.exports = {
   findByGuestId: function(req, res) {
     Events
       .find({"guests.guest": req.params.id})
+      .populate('creator')
+      .populate('guests.guest')
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },
