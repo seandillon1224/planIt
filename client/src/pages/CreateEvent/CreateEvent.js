@@ -43,6 +43,7 @@ constructor(props) {
   results:[],
   query: ''
   };    
+  this.onClick = this.onClick.bind(this);
 }
 
   
@@ -101,7 +102,18 @@ constructor(props) {
             description: this.state.description,
             dates: yourSelected
           })
-            .then(res => this.loadEvents())
+            .then(
+              this.setState({
+                event: "",
+                guests: [],
+                description: "",
+                creator: JSON.parse(localStorage.getItem('usrname')).name,
+                results:[],
+                query: ''
+              })
+
+
+            )
             .catch(err => console.log(err));
         }
 
@@ -135,9 +147,19 @@ constructor(props) {
   }
 
   onClick(e) {
-    // here you know which component is that, so you can call parent method
     
-    console.log(e)
+    let guestData=e.target.getAttribute('data')
+    console.log(guestData)
+    
+    this.setState({
+      guests: [...this.state.guests, guestData]
+    })
+
+    console.log(this.state.guests)
+
+    
+
+
 
   }
 
