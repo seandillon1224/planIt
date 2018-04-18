@@ -17,7 +17,7 @@ module.exports = {
   },
   findById: function(req, res) {
     Events
-      .findById(req.params.id)
+      .find({creator: req.params.id})
       .then(dbEvent => res.json(dbEvent))
       .catch(err => res.status(422).json(err));
   },

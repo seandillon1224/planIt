@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import Auth from '../../modules/Auth';
 import {Col, Row, Container} from '../../components/Grid';
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
-import AddBtn from "../../components/AddBtn";
 import API from "../../utils/API";
 import Header from '../../components/Header';
 import axios from "axios";
 
 
 
-class DashboardPage extends Component {
+
+class EventDetails extends Component {
 constructor(props) {
   super(props);
   this.state = {
@@ -21,32 +19,28 @@ constructor(props) {
   };    
 }
 
+getInfo = () => {
+  axios.get(`/api/users/${JSON.parse(localStorage.getItem('usrname')).name}`)
+    .then(res =>
+      this.setState({ results: res.data[0] })
+      
+    )
+    .catch(err => console.log(err));
+};
   
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
+    // this.loadEvents();
     this.getInfo()
-    // this.loadEvents(this.state.results._id);
-   
-
+    this.loadEvents(results._id)
+  
   }
 
   componentDidUpdate() {
-    // this.getInfo()
-    // this.loadEvents(this.state.results._id);
-    console.log(this.state.yourEvents)
+    console.log(this.state.results)
     
       
   }
-  getInfo = () => {
-    axios.get(`/api/users/${JSON.parse(localStorage.getItem('usrname')).name}`)
-      .then(res =>
-        this.loadEvents(res.data[0]._id)
-        // console.log(res.data[0]._id)
-      )
-      .catch(err => console.log(err));
-      // this.loadEvents(this.state.results._id)
-  };
-
 
   loadEvents = id => {
     API.getUserEvents(id)
@@ -104,6 +98,7 @@ constructor(props) {
     <Row>
     <Col size = "md-12">
     <Jumbotron>
+    {/* <img className="img-responsive" src={"C:/Users/seand/Desktop/planit6/planIt/routes\uploads\funny-Earth-Day-happy-face-space1.jpg"} alt="logo"/> */}
               <h1>Saved Events</h1>
             </Jumbotron>
             {this.state.yourEvents.length ? (
@@ -135,4 +130,4 @@ constructor(props) {
   }
 }
 
-export default DashboardPage;
+export default EventDetails;

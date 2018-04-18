@@ -1,20 +1,22 @@
 import axios from "axios";
 
 export default {
-  // saveEmail: (data) => {
-  //   return axios.post("/nonauth/saving/email", data)
-  //   .then(res => {
-  //     return res;
-  //   }).catch(err => {
-  //     return err;
-  //   });
-  // },
+  saveEmail: (data) => {
+    return axios.post("/nonauth/saving/email", data)
+    .then(res => {
+      return res;
+    }).catch(err => {
+      return err;
+    });
+  },
   
 // Export an object with a "search" method that searches the Giphy API for the passed query
 
 
 // Gets user list
-
+getUserEvents: (id) => {
+  return axios.get("/api/events/" + id);
+},
 
 getUsers: function() {
   return axios.get("/api/users/");
