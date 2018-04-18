@@ -10,6 +10,9 @@ body {
     transition: color 0.4s;
   }
   
+  .container{
+    padding-bottom: 10%;
+  }
   a:hover {
     color: #1976d2;
   }

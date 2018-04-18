@@ -200,6 +200,7 @@ constructor(props) {
           />
           
           </Col>
+          <Col size = "md-6">
           <Jumbotron>
           Dates for this Event:
           <br/>
@@ -213,6 +214,7 @@ constructor(props) {
                 })}
           </List>          
           </Jumbotron>
+          </Col>
           </Panel>
           
           </Row>
