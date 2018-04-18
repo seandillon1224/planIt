@@ -39,15 +39,17 @@ constructor(props) {
       
   }
   getInfo = () => {
-    axios.get(`/api/users/${JSON.parse(localStorage.getItem('usrname')).name}`)
-      .then(res =>
-        this.loadEvents(res.data[0]._id)
-      )
-          // this.loa
-        // console.log(res.data[0]._id)
-      
-      .catch(err => console.log(err));
-    //  Events(this.state.results._id)
+    if (Auth.isUserAuthenticated() == true){
+      axios.get(`/api/users/${JSON.parse(localStorage.getItem('usrname')).name}`)
+        .then(res =>
+          this.loadEvents(res.data[0]._id)
+        )
+            // this.loa
+          // console.log(res.data[0]._id)
+        
+        .catch(err => console.log(err));
+      //  Events(this.state.results._id)
+    }
   };
 
 
@@ -94,8 +96,24 @@ constructor(props) {
   };
 
 
-  render() {
+ render() {
     return (
+      <div>
+    
+      {Auth.isUserAuthenticated() == false ? (
+         <Container fluid>
+         <Header/>
+         <Jumbotron>
+             <h1 className="text-center">
+                <strong>PlanIt</strong>
+              </h1>
+             <h2 className="text-center">
+               The World's Number One Planning App
+             </h2>
+          </Jumbotron>
+       </Container>
+    ):
+    (
       <Container fluid>
         <Header/>
         <Jumbotron>
@@ -115,12 +133,12 @@ constructor(props) {
               <List>
                 {this.state.yourEvents.map(event => {
                   return (
-                    <ListItem key={event._id}>
-                      <a href={"/event/" + event._id}>
-                        <strong>
+                      <ListItem key={event._id}>
+                       <a href={"/event/" + event._id}>
+                         <strong>
                         <div>Creator: {event.creator.name}</div>
-                          <div>Description:  {event.description}</div>
-                          <div>Dates: {event.dates}</div>
+                           <div>Description:  {event.description}</div>
+                           <div>Dates: {event.dates}</div>
 
                           {event.guests.map(r => (
                           <div key={r._id} >Guest : {r.guest.name}</div>
@@ -131,39 +149,40 @@ constructor(props) {
 
 
 
-                          <div>Event: {event.event}</div>
-                        </strong>
-                      </a>
-                      <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            </Col>
-    <Col size = "md-6">
-    <Jumbotron>
-              <h1>Guest Events</h1>
-            </Jumbotron>
-            {this.state.guestEvents.length ? (
-              <List>
-                {this.state.guestEvents.map(event => {
-                  return (
-                    <ListItem key={event._id}>
-                      <a href={"/event/" + event._id}>
-                        <strong>
+                           <div>Event: {event.event}</div>
+                         </strong>
+                       </a>
+                       <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
+                     </ListItem>
+                   );
+                 })}
+               </List>
+             ) : (
+               <h3>No Results to Display</h3>
+             )}
+             </Col>
+     <Col size = "md-6">
+     <Jumbotron>
+               <h1>Guest Events</h1>
+             </Jumbotron>
+             {this.state.guestEvents.length ? (
+               <List>
+                 {this.state.guestEvents.map(event => {
+                   return (
+                     <ListItem key={event._id}>
+                       <a href={"/event/" + event._id}>
+                         <strong>
                         <div>Creator: {event.creator.name}</div>
-                          <div>Description:  {event.description}</div>
-                          <div>Dates: {event.dates}</div>
+                           <div>Description:  {event.description}</div>
+                           <div>Dates: {event.dates}</div>
+
                           {event.guests.map(r => (
                           <div key={r._id} >Guest : {r.guest.name}</div>
                         
                           ))}
-                          <div>Event: {event.event}</div>
-                        </strong>
-                      </a>
+                           <div>Event: {event.event}</div>
+                         </strong>
+                       </a>
                       {/* <DeleteBtn onClick={() => this.deleteEvent(event._id)} /> */}
                     </ListItem>
                   );
@@ -175,8 +194,9 @@ constructor(props) {
             </Col>
     </Row>
       </Container>
+    )}
+    </div>
     );
-  }
 }
-
+}
 export default DashboardPage;
