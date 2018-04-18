@@ -133,6 +133,7 @@ constructor(props) {
   //     .catch(err => console.log(err));
   // };
   deleteGuest = id => {
+    console.log(id)
     API.deleteGuest(id)
       .then(res => this.getInfo())
       .catch(err => console.log(err));
@@ -235,7 +236,7 @@ constructor(props) {
 
                           {event.guests.map(r => (
                           <div key={r._id} >Guest : {r.guest.name}
-                           <DeleteBtn onClick={() => this.deleteGuest(r.guest._id)} /></div>
+                           <DeleteBtn onClick={() => this.deleteGuest(r._id)} /></div>
                         
                           ))}
 

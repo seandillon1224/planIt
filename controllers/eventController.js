@@ -74,9 +74,13 @@ module.exports = {
   },
   removeGuest: function(req, res) {
     Events
-      .find({"guests.guest": req.params.id })
-      .then(dbEvent => dbEvent.remove())
-      .then(dbEvent => res.json(dbEvent))
+      // .find({"guests._id": req.params.id })
+
+      .update( {"guests._id" : req.params.id },
+      { $pull : { guests : { _id : req.params.id  } }})
+
+      
+      .then(dbEvent => console.log(dbEvent))
       .catch(err => res.status(422).json(err));
   }
 };
